@@ -20,7 +20,7 @@ module.exports = class AuthController {
       const { user, token } = await authService.login(email, password);
       res.cookie('token', token, {
         httpOnly: true,
-        secure: !isDev,
+        secure: false,
         sameSite: 'strict',
       });
       res.status(200).json({ message: 'Login successful.', user, token });
