@@ -6,6 +6,7 @@ const { connectToDatabase } = require('./src/db/connect');
 // Import routes
 const authRoutes = require('./src/features/auth/auth.routes');
 const userRoutes = require('./src/features/user/user.routes');
+const tasksRoutes = require('./src/features/tasks/tasks.routes');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/tasks', tasksRoutes);
 
 app.get('/', (_, res) => {
   res.json({
