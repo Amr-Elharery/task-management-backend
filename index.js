@@ -1,4 +1,6 @@
 const express = require('express');
+const cors = require('cors');
+
 // Swagger setup
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
@@ -16,7 +18,13 @@ const app = express();
 
 connectToDatabase(dbUrl);
 
+const corsOptions = {
+  origin: ['http://localhost:5173'], // Allowed domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Allow cookies if needed
+};
 // Middlewares
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
