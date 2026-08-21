@@ -10,6 +10,14 @@ This project was developed as part of a MERN Stack technical assessment.
 - Express.js
 - MongoDB
 
+## Prerequisites
+
+Make sure you have installed:
+
+- Node.js
+- npm
+- MongoDB or a MongoDB Atlas database
+
 ## Quick Start
 
 - Clone the repository:
@@ -104,68 +112,6 @@ index.js
 
 The project follows a feature-based structure with controllers, services, models, routes, and validation separated by responsibility.
 
-## Prerequisites
-
-Make sure you have installed:
-
-- Node.js
-- npm
-- MongoDB or a MongoDB Atlas database
-
-## Installation
-
-Clone the repository:
-
-```bash
-git clone <repository-url>
-cd task-management-backend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-## Environment Variables
-
-Create a `.env` file in the project root.
-
-The application requires configuration for:
-
-```env
-PORT=<server-port>
-IS_DEV=<true-or-false>
-
-DB_URL=<mongodb-connection-string>
-
-SALT_ROUNDS=<bcrypt-salt-rounds>
-
-JWT_SECRET=<jwt-secret>
-JWT_EXPIRES_IN=<jwt-expiration>
-```
-
-Use `.env.example` as a reference and never commit real secrets or database credentials.
-
-## Running the Application
-
-Development:
-
-```bash
-npm run dev
-```
-
-Production:
-
-```bash
-npm start
-```
-
-The API will be available at:
-
-```text
-http://localhost:<PORT>
-```
 
 ## API Documentation
 
@@ -178,7 +124,7 @@ http://localhost:<PORT>/api-docs
 The OpenAPI specification is located at:
 
 ```text
-docs/openapi.yaml
+src/docs/openapi.yaml
 ```
 
 ## API Endpoints
