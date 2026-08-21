@@ -1,0 +1,38 @@
+{
+  "name": "task-management-backend",
+  "version": "1.0.0",
+  "description": "Task Management Backend",
+  "keywords": [
+    "Task",
+    "Management",
+    "-",
+    "NodeJS",
+    "-",
+    "ExpressJS",
+    "-",
+    "MongoDB"
+  ],
+  "homepage": "https://github.com/Amr-Elharery/task-management-backend#readme",
+  "bugs": {
+    "url": "https://github.com/Amr-Elharery/task-management-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amr-Elharery/task-management-backend.git"
+  },
+  "license": "ISC",
+  "author": "Amr-Elharery",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env.production index.js",
+    "dev": "nodemon --env-file=.env index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
