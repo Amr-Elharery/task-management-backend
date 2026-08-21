@@ -21,7 +21,10 @@ const app = express();
 connectToDatabase(dbUrl);
 
 const corsOptions = {
-  origin: ['http://localhost:5173'], // Allowed domains
+  origin: [
+    'http://localhost:5173',
+    'https://task-management-frontend-one-sigma.vercel.app',
+  ], // Allowed domains
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
   credentials: true, // Allow cookies if needed
 };
