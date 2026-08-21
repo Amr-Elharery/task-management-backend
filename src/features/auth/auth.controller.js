@@ -21,7 +21,7 @@ module.exports = class AuthController {
       res.cookie('token', token, {
         httpOnly: true,
         secure: false,
-        sameSite: 'lax',
+        sameSite: 'none',
       });
       res.status(200).json({ message: 'Login successful.', user, token });
     } catch (error) {
