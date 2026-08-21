@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Logger = require('../shared/logger');
+const Logger = require('../shared/utils/logger');
 
 async function connectToDatabase(uri) {
   Logger.log('Connecting to MongoDB...');

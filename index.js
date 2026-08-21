@@ -1,6 +1,6 @@
 const express = require('express');
 const { port, isDev, dbUrl } = require('./src/config/config');
-const Logger = require('./src/shared/logger');
+const Logger = require('./src/shared/utils/logger');
 const errorMiddleware = require('./src/shared/middlewares/error.middleware');
 const { connectToDatabase } = require('./src/db/connect');
 // Import routes
