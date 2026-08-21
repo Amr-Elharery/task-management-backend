@@ -1,4 +1,5 @@
 module.exports = {
+  serverUrl: process.env.SERVER_URL,
   port: process.env.PORT || 8000,
   isDev: process.env.IS_DEV === 'true',
   dbUrl: process.env.DB_URL,

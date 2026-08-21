@@ -1,4 +1,8 @@
 const express = require('express');
+// Swagger setup
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./src/config/swagger');
+
 const { port, isDev, dbUrl } = require('./src/config/config');
 const Logger = require('./src/shared/utils/logger');
 const errorMiddleware = require('./src/shared/middlewares/error.middleware');
@@ -12,8 +16,9 @@ const app = express();
 
 connectToDatabase(dbUrl);
 
-// Middleware
+// Middlewares
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
