@@ -31,10 +31,9 @@ module.exports = class TasksController {
       const userId = req.user.id;
       const params = req.query;
       const tasks = await taskService.getAllTasks(userId, params);
-      console.log('Tasks retrieved:', tasks);
       res.status(200).json({
         message: 'Tasks retrieved successfully.',
-        tasks: tasks,
+        tasks,
       });
     } catch (error) {
       next(error);

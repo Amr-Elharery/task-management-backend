@@ -30,7 +30,6 @@ module.exports = class TaskService {
       };
     }
 
-    // Pagination
     const pageNumber = Number(page) || 1;
     const limitNumber = Number(limit) || 10;
 
