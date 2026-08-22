@@ -6,28 +6,50 @@ module.exports = class TaskService {
     const task = new Task(taskData);
     return await task.save();
   }
-
   async getAllTasks(userId, params) {
-    const query = { user: userId };
+    const { page = 1, limit = 10, status, priority, search } = params;
 
-    // Apply filters based on query parameters
-    if (params.status) {
-      query.status = params.status;
-    }
-    if (params.priority) {
-      query.priority = params.priority;
-    }
-    console.log('Query parameters:', query);
-
-    return await Task.find(query);
-  }
-
-  async searchTasksByTitle(userId, title) {
     const query = {
       user: userId,
-      title: { $regex: title, $options: 'i' }, // Case-insensitive search
     };
-    return await Task.find(query);
+
+    // Filters
+    if (status) {
+      query.status = status;
+    }
+
+    if (priority) {
+      query.priority = priority;
+    }
+
+    // Search by title
+    if (search) {
+      query.title = {
+        $regex: search,
+        $options: 'i',
+      };
+    }
+
+    const pageNumber = Number(page) || 1;
+    const limitNumber = Number(limit) || 10;
+
+    const skip = (pageNumber - 1) * limitNumber;
+
+    const [tasks, total] = await Promise.all([
+      Task.find(query).sort({ createdAt: -1 }).skip(skip).limit(limitNumber),
+
+      Task.countDocuments(query),
+    ]);
+
+    return {
+      tasks,
+      pagination: {
+        page: pageNumber,
+        limit: limitNumber,
+        total,
+        totalPages: Math.ceil(total / limitNumber),
+      },
+    };
   }
 
   async getTaskById(taskId, userId) {

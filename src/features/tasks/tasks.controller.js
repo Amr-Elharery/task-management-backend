@@ -31,30 +31,9 @@ module.exports = class TasksController {
       const userId = req.user.id;
       const params = req.query;
       const tasks = await taskService.getAllTasks(userId, params);
-      console.log('Tasks retrieved:', tasks);
       res.status(200).json({
         message: 'Tasks retrieved successfully.',
-        tasks: tasks,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async searchTasksByTitle(req, res, next) {
-    try {
-      const userId = req.user.id;
-      const { title } = req.query;
-
-      if (!title) {
-        return next(new AppError('Title query parameter is required.', 400));
-      }
-
-      const tasks = await taskService.searchTasksByTitle(userId, title);
-
-      res.status(200).json({
-        message: 'Tasks retrieved successfully.',
-        tasks: tasks,
+        data: tasks,
       });
     } catch (error) {
       next(error);
