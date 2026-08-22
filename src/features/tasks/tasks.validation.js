@@ -17,8 +17,8 @@ module.exports = {
     }
 
     try {
-      req.body.title = formateTitle(title);
-      req.body.description = formateDescription(description);
+      req.body.title = formatTitle(title);
+      req.body.description = formatDescription(description);
 
       validateStatus(status);
       validatePriority(priority);
