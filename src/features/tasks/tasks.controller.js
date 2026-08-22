@@ -41,26 +41,6 @@ module.exports = class TasksController {
     }
   }
 
-  async searchTasksByTitle(req, res, next) {
-    try {
-      const userId = req.user.id;
-      const { title } = req.query;
-
-      if (!title) {
-        return next(new AppError('Title query parameter is required.', 400));
-      }
-
-      const tasks = await taskService.searchTasksByTitle(userId, title);
-
-      res.status(200).json({
-        message: 'Tasks retrieved successfully.',
-        tasks: tasks,
-      });
-    } catch (error) {
-      next(error);
-    }
-  }
-
   async getTaskById(req, res, next) {
     try {
       const userId = req.user.id;

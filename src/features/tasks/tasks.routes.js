@@ -12,7 +12,6 @@ const taskController = new TasksController();
 
 router.post('/', authenticate, validateCreateTask, taskController.addTask);
 router.get('/', authenticate, validateQueryParams, taskController.getTasks);
-router.get('/search', authenticate, taskController.searchTasksByTitle);
 router.get('/:id', authenticate, taskController.getTaskById);
 router.put('/:id', authenticate, validateUpdateTask, taskController.updateTask);
 router.delete('/:id', authenticate, taskController.deleteTask);
