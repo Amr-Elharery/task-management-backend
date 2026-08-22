@@ -33,7 +33,7 @@ module.exports = class TasksController {
       const tasks = await taskService.getAllTasks(userId, params);
       res.status(200).json({
         message: 'Tasks retrieved successfully.',
-        tasks,
+        data: tasks,
       });
     } catch (error) {
       next(error);
