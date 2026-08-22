@@ -1,6 +1,18 @@
 const { isDev } = require('../../config/config');
 const AuthService = require('./auth.service');
 const authService = new AuthService();
+const setCookiesOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 60 * 60 * 1000,
+};
+const clearCookiesOptions = {
+  httpOnly: true,
+  secure: true,
+  sameSite: 'none',
+  maxAge: 0,
+};
 
 module.exports = class AuthController {
   async register(req, res, next) {
@@ -18,11 +30,7 @@ module.exports = class AuthController {
     try {
       const { email, password } = req.body;
       const { user, token } = await authService.login(email, password);
-      res.cookie('token', token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'none',
-      });
+      res.cookie('token', token, setCookiesOptions);
       res.status(200).json({ message: 'Login successful.', user, token });
     } catch (error) {
       next(error);
@@ -31,7 +39,7 @@ module.exports = class AuthController {
 
   async logout(req, res, next) {
     try {
-      res.clearCookie('token');
+      res.clearCookie('token', clearCookiesOptions);
       res.status(200).json({ message: 'Logged out successfully.' });
     } catch (error) {
       next(error);
