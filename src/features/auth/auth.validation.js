@@ -1,5 +1,5 @@
 const AppError = require('../../shared/utils/app.error');
-const { emailValidator } = require('./auth.helper');
+const { emailValidator, passwordValidator } = require('./auth.helper');
 
 module.exports = {
   validateRegisterInput(req, res, next) {
@@ -9,6 +9,14 @@ module.exports = {
     }
     if (!emailValidator(email)) {
       return next(new AppError('Invalid email format.', 400));
+    }
+    if (!passwordValidator(password)) {
+      return next(
+        new AppError(
+          'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.',
+          400,
+        ),
+      );
     }
     req.body.name = name.trim();
     req.body.email = email.trim().toLowerCase();

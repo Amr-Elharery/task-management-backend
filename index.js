@@ -25,7 +25,7 @@ const corsOptions = {
     'http://localhost:5173',
     'https://task-management-frontend-one-sigma.vercel.app',
   ], // Allowed domains
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed HTTP methods
   credentials: true, // Allow cookies if needed
 };
 // Middlewares
