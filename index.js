@@ -1,4 +1,8 @@
 const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
+
 // Swagger setup
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
@@ -16,8 +20,18 @@ const app = express();
 
 connectToDatabase(dbUrl);
 
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'https://task-management-frontend-one-sigma.vercel.app',
+  ], // Allowed domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
+  credentials: true, // Allow cookies if needed
+};
 // Middlewares
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/auth', authRoutes);

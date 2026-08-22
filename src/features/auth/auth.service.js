@@ -30,6 +30,6 @@ module.exports = class AuthService {
       expiresIn: jwtExpiresIn,
     });
 
-    return { token };
+    return { user, token };
   }
 };

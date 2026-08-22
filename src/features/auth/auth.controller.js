@@ -17,13 +17,13 @@ module.exports = class AuthController {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      const { token } = await authService.login(email, password);
+      const { user, token } = await authService.login(email, password);
       res.cookie('token', token, {
         httpOnly: true,
-        secure: !isDev,
-        sameSite: 'strict',
+        secure: true,
+        sameSite: 'none',
       });
-      res.status(200).json({ message: 'Login successful.', token });
+      res.status(200).json({ message: 'Login successful.', user, token });
     } catch (error) {
       next(error);
     }
